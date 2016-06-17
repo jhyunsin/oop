@@ -30,9 +30,9 @@ public static void main(String[] args) {
 			s=new Something(bbb, ccc);
 			
 			String aaa = JOptionPane.showInputDialog("aaa");
-			int ccc = Integer.parseInt(JOptionPane.showInputDialog("ccc"));
+String sddd = JOptionPane.showInputDialog("ddd");
 			s.setAaa(aaa);
-			String sddd = Integer.parseInt(JOptionPane.showInputDialog("ddd"));
+			int ddd = Integer.parseInt(sddd);
 			s.setDdd(ddd);
 			break;
 		case "2":
