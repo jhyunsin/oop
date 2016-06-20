@@ -13,51 +13,38 @@ import java.util.Date;
  * @story :
  */
 
-public class Student {
+public class StudentBean {// 클래스 시작
 	private String id, name, ssn, pw, regDate, gender; // 남 m 여 w
 	private int age;
 
 	// public final static String
 
-	public Student(String id, String pw, String name, String ssn) {
+	public StudentBean(String id, String pw, String name, String ssn) {// 생성자
 
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.ssn = ssn;
 		this.gender = null;
-	
+
 		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 		this.regDate = now;
-		
-		String[] arr = new String[2];
-				arr = ssn.split("-");
 
-		switch (Integer.parseInt(arr[1])%2) {
+		String[] arr = new String[2];
+		arr = ssn.split("-");
+
+		switch (Integer.parseInt(arr[1]) % 2) {
 		case 1:
 			this.gender = "남";
 			break;
 
 		default:
 			this.gender = "여";
-			
+
 			break;
 		}
 
-
-	
-	
-	
-	
-	
 	}
-	
-		
-		
-		
-		 
-		
-	
 
 	// public void setId(String id) { ----> 변경불가 한 항목을 지운다
 	// this.id = id;
@@ -116,20 +103,15 @@ public class Student {
 		return this.age;
 	}
 
-
-
-
-
-
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "학생 [아이디=" + id + ", 이름=" + name + ", 주민번호=" + ssn + ", 비밀번호=****" +" 등록일=" + regDate
-				+ ", gender=" + gender + ", age=" + age + "]";
+		return "학생 [아이디=" + id + ", 이름=" + name + ", 주민번호=" + ssn + ", 비밀번호=****" + " 등록일=" + regDate + ", gender="
+				+ gender + ", age=" + age + "]";
 	}
 
 }

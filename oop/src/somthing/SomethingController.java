@@ -6,7 +6,7 @@ package somthing;
 import javax.swing.JOptionPane;
 
 import jdk.nashorn.internal.ir.WhileNode;
-import school.Student;
+import school.StudentBean;
 
 /**
  * @date   : 2016. 6. 17.
@@ -15,7 +15,7 @@ import school.Student;
  * @story  : 
   */
 public class SomethingController {
-
+	
 public static void main(String[] args) {
 	Something s = null;
 	
@@ -31,9 +31,9 @@ public static void main(String[] args) {
 			
 			String aaa = JOptionPane.showInputDialog("aaa");
 String sddd = JOptionPane.showInputDialog("ddd");
-			s.setAaa(aaa);
+			s.setAaa(aaa);///???
 			int ddd = Integer.parseInt(sddd);
-			s.setDdd(ddd);
+			s.setDdd(ddd);///???
 			break;
 		case "2":
 			JOptionPane.showMessageDialog(null, "aaa값은"+s.getAaa()+"bbb값은"+s.getBbb()+"ccc값은"+s.getCcc()+"ddd값은"+s.getDdd());
@@ -43,11 +43,13 @@ String sddd = JOptionPane.showInputDialog("ddd");
 		case "0":
 			
 			JOptionPane.showConfirmDialog(null, "종료?");
-			
+			if (ok==0) {
+				
+			} else {
+
+			}
 			return;
 
-		default:
-			break;
 		}
 	}
 	

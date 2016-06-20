@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.10" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="school.Student" project="oop" file="/oop/src/school/Student.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="175" y="170"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+  <class id="1" language="java" name="school.StudentBean" project="oop" file="/oop/src/school/StudentBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="224" x="74" y="-20"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -12,8 +12,8 @@
   </class>  
   <interface id="2" language="java" name="school.StudentService" project="oop" 
     file="/oop/src/school/StudentService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="112" x="499" y="118"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="151" width="143" x="339" y="-10"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    

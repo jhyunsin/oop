@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 
 import com.sun.scenario.effect.AbstractShadow.ShadowMode;
 
+import global.MyConstants;
+
 /**
  * @date : 2016. 6. 16.
  * @author : hb2009
@@ -15,38 +17,39 @@ import com.sun.scenario.effect.AbstractShadow.ShadowMode;
  */
 public class SchoolController {
 	public static void main(String[] args) {
-		Student s = null;
+		StudentService service = new StudentServiceImpl();
+		StudentBean s = null;
 		// String id = null;
 		int confirm = 0;
 		while (true) {
-			switch (JOptionPane.showInputDialog("1등록 2조회 0종료")) {
+			switch (JOptionPane.showInputDialog("1등록 2보기 3수정 4삭제 0종료")) {
 			case "1":
-
-				String id = JOptionPane.showInputDialog("ID");
-				String pw = JOptionPane.showInputDialog("PW");
-				String name = JOptionPane.showInputDialog("이름");
-				String ssn = JOptionPane.showInputDialog("주민번호");
-
-				s = new Student(id, pw, name, ssn);
+				String spec = JOptionPane.showInputDialog("ID,PW,이름,주민번호");
+				String[] specArr = spec.split(",");
+				
+				service.registstudent(specArr[0], specArr[1], specArr[2], specArr[3]);
 
 				break;
 
 			case "2":
-				JOptionPane.showMessageDialog(null, "Id:" + s.getId() + "이름" + s.getName() + ""
-						+ "주민번호" + s.getSsn()+"성별2"+s.getGender()+"나이"+s.getAge());
+				JOptionPane.showMessageDialog(null,MyConstants.SCHOOL_NAME + service.showStudent());
 
 				break;// case2에서 이름 id 성별을 출력
-
+			case "3":
+				service.updateStudent(JOptionPane.showInputDialog("pw변경"));
+				break;
+			case "4":
+				service.deleteStudent();
+				break;
 			case "0":
 				confirm = JOptionPane.showConfirmDialog(null, "종료??");
 				if (confirm == 0) {
-					
+
 				} else {
-					continue; 
+					continue;
 				}
 				return;
-			
-			
+
 			default:
 				break;
 			}

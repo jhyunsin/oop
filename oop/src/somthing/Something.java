@@ -9,6 +9,19 @@ package somthing;
  * @file   : something.java
  * @story  : 
   */
+/**
+데이터베이스에 컬럼값은
+aaa(text)
+bbb(text)
+ccc(number)
+ddd(number)
+이며
+이중 기본값은 bbb,ccc입니다.
+그리고 그중에서 ccc 는 보안에
+민감한 값이고
+bbb 는 수정가능한 값입니다.
+메뉴는 1번 등록 2번 조회 0번 종료
+* */
 public class Something {
 	private String aaa, bbb; //private먼저 선언
 	private int ddd, ccc;
