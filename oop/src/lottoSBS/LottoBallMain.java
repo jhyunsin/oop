@@ -15,7 +15,7 @@ public class LottoBallMain {
 
 		StringBuffer buf = new StringBuffer();
 
-		service.setLottoBall(lot); //로또번호 생성 
+		service.setLottoBall(); //로또번호 생성 
 		int[] lotto = service.getLottoBall(); // 번호 가져오기
 		
 		for (int i = 0; i < lotto.length; i++) {

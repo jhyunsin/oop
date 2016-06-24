@@ -6,10 +6,12 @@ public class LottoBallServiceImpl implements LottoBallService {
 	private int[] lotto; /// 공유필드 만들기
 
 	@Override
-	public void setLottoBall(LottoBean lot) {
+	public void setLottoBall() {
 		// 중복방지 해서 어레이 하나 추출하기
 		// 1for문으로 끝내기
-	this.lotto = new int[6];
+		LottoBean lot = new LottoBean();
+		
+		this.lotto = new int[6];
 		
 	int i =0;
 	while (true) {///랜덤숫자가 몇개가 나올지 몰라서 리밑값이 없어서 와일로 돌림
