@@ -13,10 +13,16 @@ import java.util.Date;
  * @story :
  */
 
+
+
 public class StudentBean {// 클래스 시작
 	private String id, name, ssn, pw, regDate, gender; // 남 m 여 w
 	private int age;
 
+	public StudentBean() {
+	
+	}
+	
 	// public final static String
 
 	public StudentBean(String id, String pw, String name, String ssn) {// 생성자
