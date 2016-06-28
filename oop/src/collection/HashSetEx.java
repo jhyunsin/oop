@@ -15,7 +15,7 @@ public class HashSetEx {
 		StudentBean kim = new StudentBean("kim", "1", "김유신", "800101-1");
 		StudentBean lee = new StudentBean("lee", "1", "이순신", "010101-3");
 
-		stu.add(hong);     
+		stu.add(hong);   ///set 저장한다  setHong(
 		stu.add(kim);
 		stu.add(lee);
 	

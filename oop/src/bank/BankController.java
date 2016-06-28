@@ -3,6 +3,8 @@
  */
 package bank;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +17,7 @@ public class BankController {
 	public static void main(String[] args) {
 		AccountService service = new AccountServiceImpl();
 		BankService bankService = new BankServiceImpl();
+		AccountBean acc = new AccountBean();
 		int ok = 0;
 		String spec = "";
 		String[] specArr = new String[3];
@@ -22,7 +25,7 @@ public class BankController {
 
 			switch (JOptionPane.showInputDialog("" + "=========개인인터넷뱅킹=======" + "1개설" + "2입금," + "3조회," + "4출금,"
 					+ "5통장내역," + "==========은행창구=============" + "11개설" + "12전체조회" + "13계좌번호조회" + "14이름조회" + "15통장 수 조회"
-					+ "16통장내역" + "17비번 수정" + "18통장해지" + "0종료")) {
+					+ "16비번 수정" + "17통장해지" + "0종료")) {
 			case "1":
 				spec = JOptionPane.showInputDialog("이름,ID,PW");
 
@@ -51,10 +54,10 @@ public class BankController {
 
 				break;
 
-			case "11":
+			case "11":// 계좌개설
 				spec = JOptionPane.showInputDialog("이름,ID,PW");
 				specArr = spec.split(",");
-				AccountBean acc = new AccountBean();
+
 				acc.setAccountNo();
 				acc.setName(specArr[0]);/// 하나의 종이에 적어서 창구에 주더라
 				acc.setId(specArr[1]);
@@ -65,17 +68,20 @@ public class BankController {
 			case "12":
 				JOptionPane.showMessageDialog(null, bankService.accountList());
 				break;
-			case "13": /// Bean에 있는지 없는지 모르니까 String으로 받는다 값을 받아야 한다 input
-				String searchAcc = JOptionPane.showInputDialog("검색하려는 계좌번호");// 서비스에다
-																				// 던져준다
-				bankService.findByAccountNo(searchAcc);
-				JOptionPane.showMessageDialog(null, bankService.findByAccountNo(searchAcc));
-				///받아서 던져만 주는 알바 so casting은 controller에서 하지 않는다
+			case "13": 
+				String findAcc = JOptionPane.showInputDialog("검색하려는 계좌");
+				acc = bankService.findByAccountNo(findAcc);
+				JOptionPane.showMessageDialog(null, (acc.getName()==null)?"조회번호없음":acc.toString());
 				
 				break;
-			
+
 			case "14":
-				bankService.findByAccountNo(JOptionPane.showInputDialog("검색하려는 이름"));
+				String findName = JOptionPane.showInputDialog("검색하려는 이름");
+				List<AccountBean> tempList = bankService.findByName(findName);
+
+				JOptionPane.showMessageDialog(null, (tempList.isEmpty())?"검색하는 이름이 없습니다":tempList.toString());
+				///if(condition){}elseif(){} ->보다 ()?:;가 훨씬 짧고 좋다
+				////(종익이 남자)?존잘:거짓말;
 				break;
 			case "15":
 				// int count = bankService.count();
@@ -83,10 +89,19 @@ public class BankController {
 
 				break;
 			case "16":
+				String change =JOptionPane.showInputDialog("수정하려는 계좌번호,바꿀비밀번호");
+				String[] changeArr = change.split(",");
+				String changeAcc = changeArr[0];
+				String changePw = changeArr[1];
+				acc.setAccountNo(Integer.parseInt(changeAcc));
+				acc.setPw(changePw);
+				JOptionPane.showMessageDialog(null, bankService.updateAccount(acc));
+				
 				break;
 			case "17":
+				String del = JOptionPane.showInputDialog("삭제하려는번호");
+				JOptionPane.showMessageDialog(null, bankService.deleteAccount(del));
 				break;
-		
 
 			default:
 				ok = JOptionPane.showConfirmDialog(null, "종료하시겠습니까?");
