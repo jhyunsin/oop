@@ -1,8 +1,10 @@
 package map;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 
@@ -26,32 +28,31 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String join(MemberBean member) {
 		// 1 회원가입
-		String result="";
-		
-		if (map.containsKey(member.getId())) {
-			result = "중복된아이디";
-		} else {
-			map.put(member.getId() ,member );
-			result = "가입성공";
-		}
-	return result;	
+		return (map.containsKey(member.getId())) ? "중복된 아이디" : success(member);
 	}
-		
+
+	public String success(MemberBean member) {
+		map.put(member.getId(), member);
+		return "가입성공";
+	}		
 	
 	@Override
 	public String login(MemberBean member) {
 		//로그인
-		String result = "로그인실패";
+		String result = "";
 
-		if ( map.get(member.getId()).getPw().equals(member.getPw())) {
+		if (map.containsKey(member.getId())) {
+		
+			if ( findById(member.getId()).getPw().equals(member.getPw())) {
+				
+				result = "로그인성공";
+			session = findById(member.getId());
+			}else {
+				result = "ID가 없습니다";
+			}
 			
-			result = "로그인성공";
-		}else {
-			result = "ID가 없습니다";
 		}
 		return result;
-	
-	
 	}
 
 	@Override
@@ -61,21 +62,49 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void updatePw(MemberBean member) {
-		// TODO Auto-generated method stub
+	public void updatePw(MemberBean member) {//Id는 세션 Pw는 member
+		// 비번 수정
+			
+	session.setPw(member.getPw());	
+		map.put(session.getId(), session);
+		
+		
+		
 		
 	}
 
 	@Override
 	public String delete() {
 		// TODO Auto-generated method stub
-		return null;
+//		String result = "";
+//		
+//		if (session.getId().getPw().equals() ) {
+//			map.remove(session.getId());	
+//			result = "삭제완료";
+//		} else {
+//			result = "삭제불가";
+//		}
+//		
+		map.remove(session.getId());
+		session = null;
+		return "삭제성공";
+		
+		
 	}
 
 	@Override
 	public List<MemberBean> list() {
 		// TODO Auto-generated method stub
-		return null;
+		List<MemberBean> entryList = new ArrayList<MemberBean>();
+			for (Map.Entry<String, MemberBean> entry : map.entrySet()) {
+								
+																
+			System.out.println();
+			entryList.add((MemberBean) entry.getValue());
+		}
+	
+		return entryList;
+
 	}
 
 	@Override
@@ -87,13 +116,28 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<MemberBean> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		List<MemberBean> list = new ArrayList<MemberBean>();
+		
+		for (String key : map.keySet()) {////foreach
+			if (name.equals(map.get(key).getName())) {////////gender 즉 고정값이 앞에 온다
+				list.add(map.get(key));
+			}
+			}
+		
+		return list;
 	}
 
 	@Override
-	public List<MemberBean> findByGender(String gender) {
+	public int countByGender(String gender) {
 		// TODO Auto-generated method stub
-		return null;
+		int count = 0;
+		for (String key : map.keySet()) {////foreach
+		if (gender.equals(map.get(key).getGender())) {////////gender 즉 고정값이 앞에 온다
+			count++;      
+		}
+		}		
+		
+		return count;
 	}
 
 	@Override

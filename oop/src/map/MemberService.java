@@ -26,7 +26,7 @@ public interface MemberService {
 
 	public List<MemberBean> findByName(String name);
 
-	public List<MemberBean> findByGender(String gender);
+	public int countByGender(String gender);
 
 	public int count();
 }
